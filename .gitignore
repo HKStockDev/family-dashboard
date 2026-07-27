@@ -44,3 +44,6 @@ next-env.d.ts
 /family-dashboard-tmp/
 *.png
 !public/**/*.png
+
+.vercel
+.env*
