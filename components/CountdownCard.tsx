@@ -25,11 +25,17 @@ export function CountdownCard() {
         Countdown To
       </div>
       {featured ? (
-        <div>
-          <p className="font-display text-lg leading-tight">{featured.label}</p>
-          <div className="flex items-baseline gap-1.5 mt-1">
-            <span className="font-display text-4xl">{featured.days}</span>
-            <span className="text-xs text-[#C7D2B7] uppercase tracking-wide">days left</span>
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <p className="font-display text-lg leading-tight">{featured.label}</p>
+            <div className="flex items-baseline gap-1.5 mt-1">
+              <span className="font-display text-4xl">{featured.days}</span>
+              <span className="text-xs text-[#C7D2B7] uppercase tracking-wide">days left</span>
+            </div>
+          </div>
+          <div className="w-14 h-14 rounded-2xl overflow-hidden shrink-0 opacity-90">
+            {/* eslint-disable-next-line @next/next/no-img-element -- small static decorative thumbnail */}
+            <img src="/images/mountain-scene.png" alt="" className="w-full h-full object-cover" />
           </div>
         </div>
       ) : (

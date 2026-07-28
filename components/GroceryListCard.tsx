@@ -29,6 +29,8 @@ export function GroceryListCard({ className = "" }: { className?: string }) {
           </li>
         ))}
       </ul>
+      {/* eslint-disable-next-line @next/next/no-img-element -- decorative flourish */}
+      <img src="/images/leaf-sprig.png" alt="" className="w-8 h-8 object-contain opacity-50 ml-auto mt-1 -scale-x-100" />
     </Card>
   );
 }

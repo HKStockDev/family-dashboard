@@ -1,0 +1,31 @@
+import {
+  Moon,
+  Heart,
+  Church,
+  Users,
+  Dumbbell,
+  Popcorn,
+  Briefcase,
+  ShoppingBasket,
+  UtensilsCrossed,
+  Stethoscope,
+  Microscope,
+  Pill,
+  Apple,
+} from "lucide-react";
+
+export const EVENT_ICONS: Record<string, typeof Moon> = {
+  moon: Moon,
+  heart: Heart,
+  church: Church,
+  users: Users,
+  dumbbell: Dumbbell,
+  popcorn: Popcorn,
+  briefcase: Briefcase,
+  basket: ShoppingBasket,
+  utensils: UtensilsCrossed,
+  stethoscope: Stethoscope,
+  microscope: Microscope,
+  pill: Pill,
+  apple: Apple,
+};

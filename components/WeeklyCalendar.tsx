@@ -13,6 +13,7 @@ import {
 } from "@/lib/dateUtils";
 import { Card } from "./Card";
 import { CalendarDays } from "lucide-react";
+import { EVENT_ICONS } from "@/lib/eventIcons";
 
 const START_HOUR = 6;
 const END_HOUR = 22;
@@ -138,6 +139,8 @@ export function WeeklyCalendar() {
           const span = Math.max(endRow - startRow, 1);
           const style = CATEGORY_STYLES[ev.category];
           const member = data.members.find((m) => m.id === ev.memberId);
+          const isPhoto = ev.icon === "photo-hike";
+          const EventIcon = ev.icon ? EVENT_ICONS[ev.icon] : undefined;
           return (
             <div
               key={ev.id}
@@ -145,16 +148,36 @@ export function WeeklyCalendar() {
               style={{ gridColumn: dayIndex + 2, gridRow: `${startRow} / span ${span}` }}
             >
               <div
-                className={`h-full w-full rounded-lg border ${style.bg} ${style.border} px-2 py-1 flex flex-col justify-start overflow-hidden`}
+                className={`relative h-full w-full rounded-lg border ${style.bg} ${style.border} px-2 py-1 flex flex-col justify-start overflow-hidden`}
               >
-                <div className="flex items-center gap-1 min-w-0">
-                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${style.dot}`} />
-                  <span className={`text-[11px] font-semibold leading-tight truncate ${style.text}`}>
+                {isPhoto && (
+                  // eslint-disable-next-line @next/next/no-img-element -- small decorative thumbnail, not worth next/image overhead
+                  <img
+                    src="/images/mountain-scene.png"
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                  />
+                )}
+                <div className="relative flex items-center gap-1 min-w-0">
+                  {EventIcon && !isPhoto ? (
+                    <EventIcon className={`w-2.5 h-2.5 shrink-0 ${style.text}`} strokeWidth={2} />
+                  ) : (
+                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${style.dot}`} />
+                  )}
+                  <span
+                    className={`text-[11px] font-semibold leading-tight truncate ${
+                      isPhoto ? "text-white drop-shadow" : style.text
+                    }`}
+                  >
                     {ev.title}
                   </span>
                 </div>
                 {member && (
-                  <span className={`text-[9.5px] leading-tight ${style.text} opacity-80 truncate`}>
+                  <span
+                    className={`relative text-[9.5px] leading-tight opacity-80 truncate ${
+                      isPhoto ? "text-white drop-shadow" : style.text
+                    }`}
+                  >
                     {member.name}
                   </span>
                 )}
