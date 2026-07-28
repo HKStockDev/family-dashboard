@@ -26,7 +26,7 @@ const TABS: { id: TabId; label: string; icon: typeof CalendarDays }[] = [
 
 export function BottomNav({ active, onChange }: { active: TabId; onChange: (t: TabId) => void }) {
   return (
-    <nav className="shrink-0 bg-[var(--color-forest)] px-4 py-2.5">
+    <nav className="shrink-0 bg-[var(--color-forest)] px-4 py-2">
       <ul className="flex items-center justify-center gap-1 md:gap-2 flex-wrap">
         {TABS.map((tab) => {
           const Icon = tab.icon;

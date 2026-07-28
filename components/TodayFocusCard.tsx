@@ -6,10 +6,10 @@ import { Card } from "./Card";
 import { ListChecks } from "lucide-react";
 import { FamilyMember, TodoItem } from "@/lib/types";
 
-function MemberColumn({ member, todos }: { member: FamilyMember; todos: TodoItem[] }) {
+function MemberSection({ member, todos }: { member: FamilyMember; todos: TodoItem[] }) {
   const { toggleTodo } = useDashboard();
   return (
-    <div className="flex-1 min-w-0">
+    <div className="min-w-0">
       <div className="flex items-center gap-1.5 mb-1.5">
         <span
           className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white shrink-0"
@@ -24,7 +24,7 @@ function MemberColumn({ member, todos }: { member: FamilyMember; todos: TodoItem
           <li key={t.id} className="flex items-center gap-2">
             <Checkbox checked={t.done} onChange={() => toggleTodo(t.id)} color={member.color} />
             <span
-              className={`text-[12.5px] leading-tight truncate ${
+              className={`text-[12.5px] leading-tight ${
                 t.done ? "line-through text-[var(--color-muted)]" : "text-[var(--color-ink)]"
               }`}
             >
@@ -43,10 +43,17 @@ export function TodayFocusCard({ className = "" }: { className?: string }) {
   const primaryMembers = data.members.slice(0, 2);
 
   return (
-    <Card title="Today's Focus" icon={<ListChecks className="w-4 h-4" strokeWidth={1.8} />} className={className}>
-      <div className="flex gap-4 h-full">
-        {primaryMembers.map((m) => (
-          <MemberColumn key={m.id} member={m} todos={data.todos.filter((t) => t.memberId === m.id)} />
+    <Card
+      title="Today's Focus"
+      icon={<ListChecks className="w-4 h-4" strokeWidth={1.8} />}
+      className={className}
+      bodyClassName="overflow-auto"
+    >
+      <div className="flex flex-col gap-3">
+        {primaryMembers.map((m, i) => (
+          <div key={m.id} className={i > 0 ? "border-t border-[var(--color-border)] pt-2.5" : ""}>
+            <MemberSection member={m} todos={data.todos.filter((t) => t.memberId === m.id)} />
+          </div>
         ))}
       </div>
     </Card>

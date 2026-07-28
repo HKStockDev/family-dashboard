@@ -52,13 +52,13 @@ export function WeeklyCalendar() {
       title="Weekly Calendar"
       icon={<CalendarDays className="w-4 h-4" strokeWidth={1.8} />}
       className="h-full"
-      bodyClassName="overflow-auto"
+      bodyClassName="overflow-x-auto overflow-y-hidden"
     >
       <div
-        className="grid min-w-[760px]"
+        className="grid h-full min-w-[760px]"
         style={{
           gridTemplateColumns: `52px repeat(7, minmax(0, 1fr))`,
-          gridTemplateRows: `44px repeat(${TOTAL_ROWS}, minmax(22px, 1fr))`,
+          gridTemplateRows: `36px repeat(${TOTAL_ROWS}, minmax(0, 1fr))`,
         }}
       >
         {/* corner cell */}
